@@ -31,6 +31,7 @@ namespace IdentityStore
 
         public override Task<IdentityResult> CreateAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
         {
+            user.Id = user.NormalizedUserName;
             return Task.FromResult(IdentityResult.Success);
         }
 
