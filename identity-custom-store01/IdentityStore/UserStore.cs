@@ -31,7 +31,7 @@ namespace IdentityStore
 
         public override Task<IdentityResult> CreateAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            return Task.FromResult(IdentityResult.Success);
         }
 
         public override Task<IdentityResult> DeleteAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
