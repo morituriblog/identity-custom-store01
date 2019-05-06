@@ -36,6 +36,8 @@ namespace Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var connectionString = Configuration["Storage:ConnectionString"];
+            services.AddScoped(e => new IdContext(connectionString));
             services.AddDefaultIdentity<IdUser>();
 
             services.AddTransient<IUserStore<IdUser>, UserStore>();

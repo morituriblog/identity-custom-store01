@@ -13,8 +13,11 @@ namespace IdentityStore
     public class UserStore
         : UserStoreBase<IdUser, string, IdentityUserClaim<string>, IdentityUserLogin<string>, IdentityUserToken<string>>
     {
-        public UserStore(IdentityErrorDescriber describer) : base(describer)
+        IdContext _context;
+
+        public UserStore(IdentityErrorDescriber describer, IdContext context) : base(describer)
         {
+            _context = context;
         }
 
         public override IQueryable<IdUser> Users => throw new NotImplementedException();
