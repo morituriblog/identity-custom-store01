@@ -51,7 +51,7 @@ namespace IdentityStore
 
         public override Task<IdUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            return Task.FromResult(new IdUser());
         }
 
         public override Task<IList<Claim>> GetClaimsAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
