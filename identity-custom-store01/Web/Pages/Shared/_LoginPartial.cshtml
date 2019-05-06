@@ -1,7 +1,8 @@
 @using Microsoft.AspNetCore.Identity
+@using IdentityStore.Models
 
-@inject SignInManager<IdentityUser<string>> SignInManager
-@inject UserManager<IdentityUser<string>> UserManager
+@inject SignInManager<IdUser> SignInManager
+@inject UserManager<IdUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {

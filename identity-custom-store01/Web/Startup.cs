@@ -13,6 +13,7 @@ using Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using IdentityStore;
+using IdentityStore.Models;
 
 namespace Web
 {
@@ -35,9 +36,9 @@ namespace Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDefaultIdentity<IdentityUser<string>>();
+            services.AddDefaultIdentity<IdUser>();
 
-            services.AddTransient<IUserStore<IdentityUser<string>>, UserStore>();
+            services.AddTransient<IUserStore<IdUser>, UserStore>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
