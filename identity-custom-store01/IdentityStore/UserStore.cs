@@ -57,7 +57,8 @@ namespace IdentityStore
 
         public override Task<IList<Claim>> GetClaimsAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            IList<Claim> claims = new List<Claim>();
+            return Task.FromResult(claims);
         }
 
         public override Task<IList<UserLoginInfo>> GetLoginsAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
