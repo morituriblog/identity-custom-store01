@@ -34,5 +34,16 @@ namespace IdentityStore.Tables
             await _table.CreateIfNotExistsAsync();
             await _table.ExecuteAsync(operation);
         }
+
+        public async Task<IdUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var key = normalizedUserName;
+
+            var operation = TableOperation.Retrieve<IdUser>(key, key);
+            var result = await _table.ExecuteAsync(operation);
+            return result.Result as IdUser;
+        }
     }
 }
