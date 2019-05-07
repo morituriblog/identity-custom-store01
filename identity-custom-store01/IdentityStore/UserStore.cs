@@ -32,10 +32,22 @@ namespace IdentityStore
             throw new NotImplementedException();
         }
 
-        public override Task<IdentityResult> CreateAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<IdentityResult> CreateAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
         {
-            user.Id = user.NormalizedUserName;
-            return Task.FromResult(IdentityResult.Success);
+            try
+            {
+                await _context.User.CreateAsync(user, cancellationToken);
+            }
+            catch(Exception ex)
+            {
+                var error = new IdentityError
+                {
+                    Description = ex.Message,
+                };
+                return IdentityResult.Failed(error);
+            }
+
+            return IdentityResult.Success;
         }
 
         public override Task<IdentityResult> DeleteAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
