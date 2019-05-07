@@ -23,6 +23,7 @@ namespace IdentityStore
 
         public void Dispose()
         {
+            User.Dispose();
             _client = null;
         }
     }

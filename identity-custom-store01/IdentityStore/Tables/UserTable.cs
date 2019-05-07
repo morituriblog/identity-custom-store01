@@ -8,7 +8,7 @@ using IdentityStore.Models;
 
 namespace IdentityStore.Tables
 {
-    public class UserTable
+    public class UserTable : IDisposable
     {
         const string TABLE_NAME = "User";
 
@@ -17,6 +17,11 @@ namespace IdentityStore.Tables
         public UserTable(CloudTableClient client)
         {
             _table = client.GetTableReference(TABLE_NAME);
+        }
+
+        public void Dispose()
+        {
+            _table = null;
         }
 
         public async Task CreateAsync(IdUser user, CancellationToken cancellationToken = default(CancellationToken))
